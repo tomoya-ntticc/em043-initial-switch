@@ -23,7 +23,7 @@ void bitShift( int dataPin, int clockPin, int bit, unsigned long val, bool isRev
       digitalWrite(clockPin, LOW);
     }
   } else {
-  for( int i = bit; i >= 0; i-- )
+    for( int i = bit; i >= 0; i-- )
     {
       digitalWrite(dataPin, !!(val & (1L << i)));
 
@@ -57,6 +57,7 @@ void loop()
     digitalWrite(BLINEPIN, LOW);
 
     digitalWrite(LEDPIN, isReverse);
+
     for( int i = 0; i < bit + 1; i++ ) {
       digitalWrite(LATCHPIN, LOW);    // 送信中はLATCHPINをLOWに
 
@@ -73,10 +74,8 @@ void loop()
     digitalWrite(SHORTPIN, LOW);
     delay(delayTime);
 
-    if(!isReverse) {
-      digitalWrite(ALINEPIN, HIGH);
-      digitalWrite(BLINEPIN, HIGH);
-    }
+    digitalWrite(ALINEPIN, HIGH);
+    digitalWrite(BLINEPIN, HIGH);
     state = isReverse;
   }
 }
